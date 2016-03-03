@@ -62,13 +62,10 @@ npm start -- --port 8888
 ```
 위 항목에서 url, website 항목을 본인의 환경에 맞게 수정합니다.
 url은 웹앱과 연결된 레포지토리의 주소, website는 웹앱의 주소입니다.
-![Azure 웹앱 정보](./images/azure-webapp-info.png)
-위 이미지에서 `URL` => `website`, `Git clone url` => `url` 입니다.
+관리자 포털의 정보 항목에서 `URL` => `website`, `Git clone url` => `url` 입니다.
 
 애져 웹 관리자 포털에서 웹앱 설정으로 접근합니다.
-![Azure Admin Portal](./images/azure-webapp-settings.png)
 소켓을 `Off`에서 `On`으로 변경합니다.
-![Azure Allow Socket](./images/azure-webapp-allow-socket.png)
 
 수정이 끝났으면 다음 명령어를 실행합니다.
 ```sh
@@ -82,12 +79,11 @@ npm run deploy
 단순 테스트 단계에서는 이 단계를 수행하실 필요가 없습니다.
 
 애져 웹 관리자 포털에서 웹앱 설정으로 접근합니다.
-![Azure Admin Portal](./images/azure-webapp-settings.png)
 앱 설정에 다음과 같은 환경 변수를 추가합니다.
-![Azure Admin Portal App Env Setting](./images/azure-webapp-config-redis-env.png)
-`REDIS_HOST` => 레디스 호스트 주소
-`REDIS_PORT` => 레디스 포트
-`REDIS_AUTH_KEY` => 레디스 인증 키
+
+* `REDIS_HOST` => 레디스 호스트 주소
+* `REDIS_PORT` => 레디스 포트
+* `REDIS_AUTH_KEY` => 레디스 인증 키
 
 이후 앱을 재시작하면 유저가 접속할 때 토큰을 요구합니다.
 CB에서 인증할 경우 레디스에 자동으로 토큰이 생기며 해당 토큰을 접속시 같이 전달해주면 됩니다.

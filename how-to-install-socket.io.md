@@ -66,9 +66,7 @@ url은 웹앱과 연결된 레포지토리의 주소, website는 웹앱의 주�
 위 이미지에서 `URL` => `website`, `Git clone url` => `url` 입니다.
 
 애져 웹 관리자 포털에서 웹앱 설정으로 접근합니다.
-![Azure Admin Portal](./images/azure-webapp-settings.png)
 소켓을 `Off`에서 `On`으로 변경합니다.
-![Azure Allow Socket](./images/azure-webapp-allow-socket.png)
 
 수정이 끝났으면 다음 명령어를 실행합니다.
 ```sh
@@ -82,9 +80,7 @@ npm run deploy
 단순 테스트 단계에서는 이 단계를 수행하실 필요가 없습니다.
 
 애져 웹 관리자 포털에서 웹앱 설정으로 접근합니다.
-![Azure Admin Portal](./images/azure-webapp-settings.png)
 앱 설정에 다음과 같은 환경 변수를 추가합니다.
-![Azure Admin Portal App Env Setting](./images/azure-webapp-config-redis-env.png)
 `REDIS_HOST` => 레디스 호스트 주소
 `REDIS_PORT` => 레디스 포트
 `REDIS_AUTH_KEY` => 레디스 인증 키

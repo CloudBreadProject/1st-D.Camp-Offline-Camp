@@ -62,8 +62,7 @@ npm start -- --port 8888
 ```
 위 항목에서 url, website 항목을 본인의 환경에 맞게 수정합니다.
 url은 웹앱과 연결된 레포지토리의 주소, website는 웹앱의 주소입니다.
-![Azure 웹앱 정보](./images/azure-webapp-info.png)
-위 이미지에서 `URL` => `website`, `Git clone url` => `url` 입니다.
+관리자 포털의 정보 항목에서 `URL` => `website`, `Git clone url` => `url` 입니다.
 
 애져 웹 관리자 포털에서 웹앱 설정으로 접근합니다.
 소켓을 `Off`에서 `On`으로 변경합니다.

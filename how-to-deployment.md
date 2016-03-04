@@ -1,5 +1,5 @@
-## 배포
-이 문서는 ARM을 통해 리소스 배포를 하기 위한 방법을 기술합니다.
+## Cloud로 리소스 배포
+이 문서는 ARM을 통해 리소스들(SQL server, web app, mobile app 등)의 배포를 하기 위한 방법을 기술합니다.
 배포는 [CloudBread-ARM](https://github.com/CloudBreadProject/CloudBread-ARM) 에서 하실 수 있습니다.
 
 ### 준비사항
@@ -28,3 +28,6 @@ SQL server login password|8자 이상. 특수문자를 하나 이상 포함
 5.배포 약관검토 동의하기.
 
 6.[Create] button으로 배포.
+
+배포가 10분 이내로 모든 리소스들을 사용할 수 있습니다.
+파라미터 입력에 주의만 해주시면 모든 리소스가 배포에 성공 할 수 있습니다.

@@ -11,12 +11,9 @@ Microsoft 계정
 2.[Deploy to Azure] 버튼을 클릭.
 
 3.파라미터 입력.
-
-postfix App Name : 생성하는 모든 리소스들의 고유이름
-
-SQL server login ID : SQL 로그인에 필요한 ID
-
-SQL server login password : SQL로그인에 필요한 비밀번호
+ - postfix App Name : 생성하는 모든 리소스들의 고유이름
+ - SQL server login ID : SQL 로그인에 필요한 ID
+ - SQL server login password : SQL로그인에 필요한 비밀번호
 
 **파라미터 입력시 주의할 점**
 

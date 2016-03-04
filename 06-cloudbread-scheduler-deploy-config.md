@@ -2,7 +2,7 @@
 이 문서는 CloudBread에서 Schduler Batch 역할을 담당하는 CloudBread-Schduler 배포 절차를 설명합니다.
 
 ##CloudBread-Scheduler 배포 절차 소개
-CloudBread Scheduler는 Azure의 WebJob을 이용해 구현되었습니다. 2016년 3월 현재 WebJob의 가장 효율적인 방법은 Visual Studio를 이용해 Publish as WebJob을 CloudBread-Admin-Web에 붙여서 배포하는 방안입니다.
+CloudBread Scheduler는 Azure의 WebJob을 이용해 구현되었습니다. 2016년 3월 현재 WebJob의 가장 효율적인 방법은 Visual Studio를 이용해 *Publish as Azure WebJob*을 CloudBread-Admin-Web에 붙여서 배포하는 방안입니다.
 따로 앱을 추가로 생성하지 않고, 이렇게 앱 서비스와 함께 배포하는 방식으로 처리됩니다.
 
 ###CloudBread-Scheduler를 분리해서 설치
@@ -22,10 +22,12 @@ Slack Incoming Webhook 참고 링크 https://api.slack.com/incoming-webhooks
 
 ###설정 방법
 1회 유니티 캠프에서 권장하는 - Visual Studio에서 설정하는 절차는 아래를 수행하세요.
-먼저, https://github.com/CloudBreadProject/CloudBread-Scheduler 리포지토리에서 우측 상단의 Fork를 수행해 자신의 리포지토리로 가져옵니다. CloudBread Scheduler 프로젝트를 git clone 또는 다운로드 후 Visual Studio의 루트에 위치한 App.config 파일을 수정하고 바로 자신의 *CloudBread AdminWeb*웹 앱에 WebJob으로 배포 하는 방안입니다. 배포 방안이 몇가지 추가로 존재하나 현 시점에서 가장 효율적인 방법으로 추천해 드립니다. 다른 방식처럼, Azure Portal에서 구성하시면 Visual Studio config 설정보다 우선하게 됩니다.
-
-- **필수 설정 - 연결문자열 설정**
-
+1. https://github.com/CloudBreadProject/CloudBread-Scheduler 리포지토리에서 우측 상단의 Fork를 수행해 자신의 리포지토리로 가져옵니다.
+2. CloudBread Scheduler 리포지토리의 Branch에서 ==**2.0.x 브랜치**==를 선택하고,
+3. 해당 Branch를 git clone 또는 다운로드
+4. Visual Studio의 솔루션 파일을 열고, 루트에 위치한 App.config 파일을 아래 절차대로 수정
+5. *CloudBread AdminWeb*웹 앱에 WebJob으로 배포 하는 방안입니다. 배포 방안이 몇가지 추가로 존재하나 현 시점에서 가장 효율적인 방법으로 추천해 드립니다. 다른 방식처럼, Azure Portal에서 구성하시면 Visual Studio config 설정보다 우선하게 됩니다.
+6. **필수 설정 - 연결문자열 설정** 과정 
 설정이름|연결문자열 값|추가 설정|항목 설명
 ---|---|---|---
 AzureWebJobsDashboard|Azure Table Storage 연결문자열|사용자 지정|저장소 계정 연결에 사용
@@ -33,8 +35,7 @@ AzureWebJobsStorage|Azure Table Storage 연결문자열|사용자 지정|저장�
 CBSchedulerDBConnectionString| Azure SQL Database 연결문자열|SQL 데이터베이스|데이터베이스 연결에 사용
 메모장에 복사해 두셨던 연결 문자열을 재사용해 구성합니다.
 
-- **필수 설정 - 앱 설정**
-
+7. **필수 설정 - 앱 설정** 과정
 설정이름|설명
 ---|---
 CBNotiEmailSenderID| Gmail ID
@@ -45,9 +46,8 @@ CBNotiSlackChannel|Webhook을 받도록 구성한 채널 설정
 CBNotiSlackUserName|메세지 보낸사람으로 표시할 Slack User Name
 
 
-- **선택 설정 항목 **
-아래 값들은 선택 항목입니다. 기본 값이 설정되어 있으니 따로 설정하실 필요 없으며, 설정 변경시 이용되니 참고하세요.
-
+8. **선택 설정 항목** 처리 과정
+아래 값들은 선택 항목입니다. 기본 값이 설정되어 있으니 따로 설정하실 필요 없으며, 설정 변경시 이용되니 참고하세요. 
 설정이름|기본값|항목 설명
 ---|---|---
 CloudBreadconRetryCount|3|DB연결 재시도 수. Production 환경에서 스로틀링 핸들을 위해 30 설정 추천. 최대 30초 간격으로 3회 시도.

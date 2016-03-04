@@ -1,45 +1,55 @@
-#CloudBread 설정
-이 문서는 CloudBread를 클라우드로 배포 후 설정하는 과정을 소개합니다.
+#CloudBread Scheduler 서비스 배포
+이 문서는 CloudBread에서 Schduler Batch 역할을 담당하는 CloudBread-Schduler 배포 절차를 설명합니다.
 
-###설정이 필요한 이유
-CloudBread core 서버 어플리케이션에서 데이터베이스와 저장소에 접근하기 위한 계정 정보와 서버 정보를 CloudBread core 서버에 설정하는 과정을 수행해야 정상 동작합니다.
+##CloudBread-Scheduler 배포 절차 소개
+CloudBread Scheduler는 Azure의 WebJob을 이용해 구현되었습니다. 2016년 3월 현재 WebJob의 가장 효율적인 방법은 Visual Studio를 이용해 Publish as WebJob을 CloudBread AdminWeb에 배포하는 방안입니다. 추천하는 개발/테스트 방안이며 만약, 대규모 배치를 수행하는 서비스일 경우 웹앱을 추가 후 CloudBread Scheduler 전용으로 구성할 것을 권장합니다. 웹앱의 앱 서비스 계획에 따라 batch 서비스의 크기도 같이 스케일업/스케일아웃 됩니다.
 
-연결문자열 수집을 안하셨을 경우 아래 과정을 통해 수행하세요.
-연결 문자열 수집 절차 : https://github.com/CloudBreadProject/1st-D.Camp-Offline-Camp/blob/master/cloudbread-connection-string.md
+WebJob은 **Trigger**에 의해 동작하게 되는 구조로, WebJob 내부에서 *Timer  Trigger*를 이용해 cron 방식으로 trigger가 발생해 해당 시각에 작업할 내역을 바로 **Azure Queue Storage**라는 queue 저장소(이름은 cloudbread-batch)로 메세지를 보냅니다. 이 queue에 메세지가 도착하면, WebJob의 queue trigger에 의해 자동으로 queue의 메세지를 가져와 해당 메세지의 JobID를 읽어 batch를 수행합니다. Timer 트리거를 이용해 이 batch들은 모두 Singleton 작업으로 수행되며(2016년 3월) 수행이 완료되면 알림 서비스를 이용해 자동으로 Slack(기본) 또는 GMail로 전달하실 수 있으며, Slack을 이용하는 방식을 권장해 드립니다. 2016년 3월 현재, GMail은 "신뢰할 수 없는 기기에서 로그인 시도" 메세지가 발생합니다.
+
+
+### Slack Webhook 구성
+먼저, 이미 가입하고 오신 Slack에 로그인 합니다. 
+다음 링크에서 Incoming Web Hook을 구성합니다. https://my.slack.com/services/new/incoming-webhook/ 
+즉, batch가 끝나면 자동으로 메세지가 인입될 slack 채널을 선택합니다.
+처리하면 Channel webhook URL이 생성되고 이 URL과 채널을 메모장에 복사해 두세요. 전체 URL을 그대로 이용합니다.
+```
+https://hooks.slack.com/services/abcd/abcd/abcdefghgh
+```
+Slack Incoming Webhook 참고 링크 https://api.slack.com/incoming-webhooks 
+
 
 ###설정 방법
-옵션1. Azure 모바일 앱의 *응용 프로그램 설정* 항목 - *연결 문자열* 항목과 *앱 설정* 항목에 설정 하는 방법
-이번 유니티 캠프에서 이용하실 것을 권장합니다.
-옵션2. CloudBread 프로젝트를 git clone 또는 다운로드 후 Visual Studio의 루트에 위치한 web.config 파일을 수정후 바로 자신의 Azure 모바일 앱으로 배포 하는 방안이며, 서버 개발자이거나 개발을 희망하실 경우 추천.
+1회 유니티 캠프에서 권장하는 -Visual Studio에서 설정하는 절차는 아래를 수행하세요.
+먼저, https://github.com/CloudBreadProject/CloudBread-Scheduler 리포지토리에서 우측 상단의 Fork를 수행해 자신의 리포지토리로 가져옵니다. CloudBread Scheduler 프로젝트를 git clone 또는 다운로드 후 Visual Studio의 루트에 위치한 App.config 파일을 수정하고 바로 자신의 *CloudBread AdminWeb*웹 앱에 WebJob으로 배포 하는 방안입니다. 배포 방안이 몇가지 추가로 존재하나 현 시점에서 가장 효율적인 방법으로 추천해 드립니다. 다른 방식처럼, Azure Portal에서 구성하시면 Visual Studio config 설정보다 우선하게 됩니다.
 
-1회 유니티 캠프에서 권장하는 - Azure 포털에서 설정하는 절차는 아래를 수행하세요.
-
-###CloudBread는 설정 항목 리스트
-1. 필수적으로 구성해야할 연결문자열 설정. CloudBread가 배포된 *Azure 모바일 앱*의 *응용 프로그램 설정* 항목 - *연결 문자열* 항목과 *앱 설정*으로 이동.
-2. **연결 문자열** 부분에 아래 값을 입력 - 메모장에 복사해둔 연결 문자열 활용
-3. **필수 설정 - 연결문자열 설정**
+- **필수 설정 - 연결문자열 설정**
 
 설정이름|연결문자열 값|추가 설정|항목 설명
 ---|---|---|---
-CloudBreadDBConString|Azure SQL Database 연결문자열|SQL 데이터베이스|데이터베이스 연결에 사용
-CloudBreadStorageConString|Azure Table Storage 연결문자열|사용자 지정|저장소 계정 연결에 사용
-4. 연결 문자열 설정 항목 바로 위의 **앱 설정** 항목에 아래 항목 입력
-5. **필수 설정 - 앱 설정
+AzureWebJobsDashboard|Azure Table Storage 연결문자열|사용자 지정|저장소 계정 연결에 사용
+AzureWebJobsStorage|Azure Table Storage 연결문자열|사용자 지정|저장소 계정 연결에 사용
+CBSchedulerDBConnectionString| Azure SQL Database 연결문자열|SQL 데이터베이스|데이터베이스 연결에 사용
+이렇게 이용됩니다.
 
-설정이름|값|설명
----|---|---|---
-CloudBreadSocketRedisServer|Redis Cache 연결문자열|이 키는 CloudBread-Socket 프로젝트 인증 토큰을 저장하는 Redis에 연결 할때 사용되는 값
-CloudBreadRankRedisServer|Redis Cache 연결문자열|이 키는 leader board(ranking) 서비스 연결에 사용
-CloudBreadGameLogRedisServer|Redis Cache 연결문자열|이 키는 redis를 게임 로그 서비스로 설정할 경우(아래 CloudBreadLoggerSetting과 연동) 연결에 사용
-6. **선택 설정 항목 **
+- **필수 설정 - 앱 설정**
+ 
+설정이름|설명
+---|---
+CBNotiEmailSenderID| Gmail ID
+CBNotiEmailSenderPassword|GMail PWD
+CBNotiEmailSendToEmail|메일수신자 Email 주소 - batch 작업 후 팀이나 관리자 그룹메일로 설정
+CBNotiSlackWebhookURL|위에서 생성한 Webhook URL 선택
+CBNotiSlackChannel|Webhook을 받도록 구성한 채널 설정
+CBNotiSlackUserName|메세지 보낸사람으로 표시할 Slack User Name
+
+- **선택 설정 항목 **
 아래 값들은 선택 항목입니다. 기본 값이 설정되어 있으니 따로 설정하실 필요 없으며, 설정 변경시 이용되니 참고하세요.
 
-설정이름|기본값|설명
+설정이름|기본값|항목 설명
 ---|---|---
-CloudBreadCryptSetting|AES256|암호화 방식 설정
-CloudBreadLoggerSetting|ATS|기본 로그저장 방식은 Azure Table Storage로 바로 저장. SQL, AQS, redis 설정으로 저장 위치 변경 가능. CBLogger.cs 참조
 CloudBreadconRetryCount|3|DB연결 재시도 수. Production 환경에서 스로틀링 핸들을 위해 30 설정 추천. 최대 30초 간격으로 3회 시도.
 CloudBreadconRetryFromSeconds|5|DB연결 재시도 대기 시간 초. Production 환경에서 throttling 핸들을 위해 3으로 설정 추천. 최대 30초 간격으로 3회 시도.
-CloudBreadRankSortedSet|cbrank|Redis에 저장되는 rank 기능 처리 Redis Sorted Set 이름
-CloudBreadFillRedisRankSetOnStartup|true|최초 시작시 redis cache에 rank 정보를 채우는 처리 수행 여부
-CloudBreadGameLogExpTimeDays|365|redis에 로그 데이터 적재시 로그 데이터 기본 저장일(게임 로그 저장 in-memory queue 서비스로 사용되는 것이며, Scheduler에 의해 batch로 Azure table Storage로 저장하는 패턴)
+
+이 모든 구성을 완료하셨다면, Visual Studio에서 **Publish as Azure WebJob**을 수행해 배포합니다.
+
+Azure Scheduler 구성과 배포 과정이 완료 되었습니다.

@@ -25,6 +25,8 @@ CloudBread core 서버 어플리케이션에서 데이터베이스와 저장소�
 CloudBreadDBConString|Azure SQL Database 연결문자열|SQL 데이터베이스|데이터베이스 연결에 사용
 CloudBreadStorageConString|Azure Table Storage 연결문자열|사용자 지정|저장소 계정 연결에 사용
 
+- 주의사항으로, Azure SQL Database의 연결 문자열 ==**password**== 부분이 기본 *{your_password_here}* 형태로 되어 있습니다. 이부분을 중괄호부터 모두 지우고 꼭~ 수정 해 주세요.
+
 - 연결 문자열 설정 항목 바로 위의 **앱 설정** 항목에 아래 항목 입력
 - **필수 설정 - 앱 설정**
 

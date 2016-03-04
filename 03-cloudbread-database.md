@@ -31,6 +31,7 @@ cd "CloudBread-DB-Install-Script 다운로드 후 압축을 푼 경로"
 ```
 ping-test.bat 서버주소 SQL로그인ID SQL로그인암호 데이터베이스이름
 ```
+서버를 찾을 수 없거나, 방화벽 제한(Firewall)이 오류가 기본 발생. 해결을 위해 Azure포털 - 생성한 리소스 그룹 - SQL Server - 설정 화면에서 *방화벽 설정 표시*를 선택하고, 맨위의 **클라이언트 IP 주소 추가**를 누르시면 됩니다.
 ping 명령 수행시 서버의 version 정보가 보이면 정상 연결입니다. 만약, SQLCMD를 찾을 수 없다고 나오면 "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn" 경로에 일반적으로 SQLCMD가 존재합니다.(설치 경로는 저와 다를 수 있습니다) 다음 명령으로 path를 등록하고 다시 ping 명령을 수행합니다.
 ```
 path "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn"

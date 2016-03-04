@@ -5,12 +5,13 @@
 CloudBread core 서버 어플리케이션에서 데이터베이스와 저장소에 접근하기 위한 계정 정보와 서버 정보를 CloudBread core 서버에 설정하는 과정을 수행해야 정상 동작합니다.
 
 연결문자열 수집을 안하셨을 경우 아래 과정을 통해 수행하세요.
-연결 문자열 수집 절차 : https://github.com/CloudBreadProject/1st-D.Camp-Offline-Camp/blob/master/cloudbread-connection-string.md
+연결 문자열 수집 절차 : https://github.com/CloudBreadProject/1st-D.Camp-Offline-Camp/blob/master/02-cloudbread-connection-string.md
 
 ###설정 방법
-옵션1. Azure 모바일 앱의 *응용 프로그램 설정* 항목 - *연결 문자열* 항목과 *앱 설정* 항목에 설정 하는 방법
+두 방법 중 하나를 택해서 수행하세요.
+- 옵션1. Azure 모바일 앱의 *응용 프로그램 설정* 항목 - *연결 문자열* 항목과 *앱 설정* 항목에 설정 하는 방법
 이번 유니티 캠프에서 이용하실 것을 권장합니다.
-옵션2. CloudBread 프로젝트를 git clone 또는 다운로드 후 Visual Studio의 루트에 위치한 web.config 파일을 수정후 바로 자신의 Azure 모바일 앱으로 배포 하는 방안이며, 서버 개발자이거나 개발을 희망하실 경우 추천.
+- 옵션2. CloudBread 프로젝트를 git clone 또는 다운로드 후 Visual Studio의 루트에 위치한 web.config 파일을 수정후 바로 자신의 Azure 모바일 앱으로 배포 하는 방안이며, 서버 개발자이거나 개발을 희망하실 경우 추천.
 
 1회 유니티 캠프에서 권장하는 - Azure 포털에서 설정하는 절차는 아래를 수행하세요.
 
@@ -46,4 +47,4 @@ CloudBreadRankSortedSet|cbrank|Redis에 저장되는 rank 기능 처리 Redis So
 CloudBreadFillRedisRankSetOnStartup|true|최초 시작시 redis cache에 rank 정보를 채우는 처리 수행 여부
 CloudBreadGameLogExpTimeDays|365|redis에 로그 데이터 적재시 로그 데이터 기본 저장일(게임 로그 저장 in-memory queue 서비스로 사용되는 것이며, Scheduler에 의해 batch로 Azure table Storage로 저장하는 패턴)
 
-설정이 완료 되었습니다.
+CloudBread 설정이 완료 되었습니다. 다음으로 CloudBread Socket 배포와 설정이 필요합니다.

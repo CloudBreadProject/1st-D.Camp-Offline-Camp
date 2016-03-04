@@ -44,3 +44,6 @@ install-CloudBreadDB-object-create.bat 서버주소 SQL로그인ID SQL로그인�
 아무 오류 메세지가 없을 경우 정상 수행된 것입니다.
 
 데이터베이스 개체 생성 과정이 완료 되었습니다.
+
+다음으로, CloudBread 설정 과정이 필요합니다.
+

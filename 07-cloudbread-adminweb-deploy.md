@@ -12,10 +12,9 @@
 6. *권한 부여* 항목에 자신의 github 계정 확인
 7. 조직 선택 부분에 *개인* 확인
 8. *프로젝트 선택*에서 위의 1번 과정에서 Fork를 수행한 자신의 리포지토리의 *CloudBread-Admin-Web*를 선택
-9. *지점 선택*에서 master 기본 설정 사용
+9. *지점 선택*에서 최근의 ==**2.0.x 브랜치**== 설정 사용
 
 위의 과정을 수행하시면 바로 배포가 이루어지며, 처음 수행시 5번 과정에서 Github 로그인을 요구할 수 있습니다.
 일반적으로 5분 내에 잠시 후 배포가 완료됩니다.
 
 Git에 익숙하시고 자신의 리포지토리에서 Visual Studio로 개발을 원하실 경우 CloudBread wiki -  https://github.com/CloudBreadProject/CloudBread/wiki 문서를 참고해 Git 명령으로 로컬 clone 하시고 Visual Studio에서 프로젝트를 열고 web.config를 수정해 바로 Visual Studio에서 배포 하시면 됩니다.
-

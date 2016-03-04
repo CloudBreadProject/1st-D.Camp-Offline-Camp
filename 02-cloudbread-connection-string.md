@@ -32,3 +32,5 @@ Azure Table Storage 연결 문자열 확인 및 복사 과정이 완료 되었�
 4. 우측 블레이드의 *Primary connection string(StackExchange.Redis)* 연결문자열 전체를 자신의 메모장 등에 저장
 
 Redis Cache 연결 문자열 확인 및 복사 과정이 완료 되었습니다.
+
+이제 DB 개체 설치 과정이 필요합니다.

@@ -19,6 +19,7 @@ SQL server login ID : SQL 로그인에 필요한 ID
 SQL server login password : SQL로그인에 필요한 비밀번호
 
 **파라미터 입력시 주의할 점**
+
 파라미터|주의사항
 ---|---|
 postfix App Name|16자 이내의 소문자와 숫자

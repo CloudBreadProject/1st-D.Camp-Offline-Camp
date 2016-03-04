@@ -18,20 +18,20 @@ CloudBread core 서버 어플리케이션에서 데이터베이스와 저장소�
 1. 필수적으로 구성해야할 연결문자열 설정. CloudBread가 배포된 *Azure 모바일 앱*의 *응용 프로그램 설정* 항목 - *연결 문자열* 항목과 *앱 설정*으로 이동.
 2. **연결 문자열** 부분에 아래 값을 입력 - 메모장에 복사해둔 연결 문자열 활용
 3. **필수 설정 - 연결문자열 설정**
-설정이름 | 연결문자열 값 | 추가 설정 | 항목 설명
+설정이름|연결문자열 값|추가 설정|항목 설명
 ---|---|---|--
-CloudBreadDBConString | Azure SQL Database 연결문자열 | SQL 데이터베이스 | 데이터베이스 연결에 사용
-CloudBreadStorageConString | Azure Table Storage 연결문자열 | 사용자 지정 | 저장소 계정 연결에 사용
+CloudBreadDBConString|Azure SQL Database 연결문자열|SQL 데이터베이스|데이터베이스 연결에 사용
+CloudBreadStorageConString|Azure Table Storage 연결문자열|사용자 지정|저장소 계정 연결에 사용
 4. 연결 문자열 설정 항목 바로 위의 **앱 설정** 항목에 아래 항목 입력
 5. **필수 설정 - 앱 설정**
-설정이름 | 값 | 설명
+설정이름|값|설명
 ---|---|---|--|
-CloudBreadSocketRedisServer | Redis Cache 연결문자열 | 이 키는 CloudBread-Socket 프로젝트 인증 토큰을 저장하는 Redis에 연결 할때 사용되는 값
-CloudBreadRankRedisServer | Redis Cache 연결문자열 | 이 키는 leader board(ranking) 서비스 연결에 사용
-CloudBreadGameLogRedisServer | Redis Cache 연결문자열 | 이 키는 redis를 게임 로그 서비스로 설정할 경우(아래 CloudBreadLoggerSetting과 연동) 연결에 사용
+CloudBreadSocketRedisServer|Redis Cache 연결문자열|이 키는 CloudBread-Socket 프로젝트 인증 토큰을 저장하는 Redis에 연결 할때 사용되는 값
+CloudBreadRankRedisServer|Redis Cache 연결문자열|이 키는 leader board(ranking) 서비스 연결에 사용
+CloudBreadGameLogRedisServer|Redis Cache 연결문자열|이 키는 redis를 게임 로그 서비스로 설정할 경우(아래 CloudBreadLoggerSetting과 연동) 연결에 사용
 6. **선택 설정 항목 **
 아래 값들은 선택 항목입니다. 기본 값이 설정되어 있으니 따로 설정하실 필요 없으며, 설정 변경시 이용되니 참고하세요.
-설정이름 | 기본값 | 설명
+설정이름|기본값|설명
 ---|---|---|
 CloudBreadCryptSetting|AES256|암호화 방식 설정
 CloudBreadLoggerSetting|ATS|기본 로그저장 방식은 Azure Table Storage로 바로 저장. SQL, AQS, redis 설정으로 저장 위치 변경 가능. CBLogger.cs 참조

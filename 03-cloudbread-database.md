@@ -39,7 +39,7 @@ path "C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn"
 
 7. 다음 명령을 수행해 CloudBread DB 개체를 자동 설치합니다.
 ```
-install-CloudBreadDB-object-create.bat 서버주소 SQL로그인ID SQL로그인암호 데이터베이스이름
+install-with-sample.bat 서버주소 SQL로그인ID SQL로그인암호 데이터베이스이름
 ```
 아무 오류 메세지가 없을 경우 정상 수행된 것입니다.
 

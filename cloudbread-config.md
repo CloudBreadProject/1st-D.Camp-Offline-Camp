@@ -19,13 +19,13 @@ CloudBread core 서버 어플리케이션에서 데이터베이스와 저장소�
 2. **연결 문자열** 부분에 아래 값을 입력 - 메모장에 복사해둔 연결 문자열 활용
 3. **필수 설정 - 연결문자열 설정**
 설정이름|연결문자열 값|추가 설정|항목 설명
----|---|---|--
+---|---|---|---|
 CloudBreadDBConString|Azure SQL Database 연결문자열|SQL 데이터베이스|데이터베이스 연결에 사용
 CloudBreadStorageConString|Azure Table Storage 연결문자열|사용자 지정|저장소 계정 연결에 사용
 4. 연결 문자열 설정 항목 바로 위의 **앱 설정** 항목에 아래 항목 입력
 5. **필수 설정 - 앱 설정**
 설정이름|값|설명
----|---|---|--|
+---|---|---|---|
 CloudBreadSocketRedisServer|Redis Cache 연결문자열|이 키는 CloudBread-Socket 프로젝트 인증 토큰을 저장하는 Redis에 연결 할때 사용되는 값
 CloudBreadRankRedisServer|Redis Cache 연결문자열|이 키는 leader board(ranking) 서비스 연결에 사용
 CloudBreadGameLogRedisServer|Redis Cache 연결문자열|이 키는 redis를 게임 로그 서비스로 설정할 경우(아래 CloudBreadLoggerSetting과 연동) 연결에 사용

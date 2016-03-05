@@ -42,7 +42,7 @@ CloudBread는 클라이언트 개발자가 필요로 하는 백엔드 개발시�
 
 8. 소켓으로 연동을 완료했다면 웹에서 채팅을 테스트해 보실 수 있습니다.  
 다음으로 통계를 내기위해 데이터를 쌓는 스케쥴러 서비스를 배포해 보겠습니다.  
-[Cloud Scheduler 배포](./06-cloudbread-scheduler-eploy-config.md)
+[Cloud Scheduler 배포](./06-cloudbread-scheduler-deploy-config.md)
 
 9. 통계 데이터는 admin web 사이트에서 확인 하실 수 있습니다.  
 그럼 admin web사이트도 연속배포를 수행해 볼까요?  
